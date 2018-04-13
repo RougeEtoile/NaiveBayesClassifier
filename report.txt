@@ -1,0 +1,38 @@
+Abraham D'mitri Joseph
+adj15c
+
+Naive Bayes Classifier
+
+1. Introduction of classification method
+Naive Bayes is a probabilistic classification method. It works using Bayes theorem. Which is posterior equals
+(likelihood * prior)/evidence.
+The simplified math of the classifier works by P(C) * P(Ai|Ck)
+C is the class, P(Ai|Ck) can be simplified to |Aik|/ Nc where |Aik| is number of instances having attribute Ai and
+belongs to class Ck, Nc is the count of class C in the training set.
+
+2. Implementation details
+So my classifier is built as one class called Naive Bayes. Internally it stores the model in a variable called model.
+Model is a three dimensional python dictionary, first dimension is the class label, the second is the attribute index,
+the third is the attribute value. The model stores the weight of each attribute, which is how many times it was seen in
+the training set. I chose this structure because python dictionaries are easy to use and I think it's logical for this
+project, as it provides o(1) look ups. So during training each time I encounter an attribute the
+weight for that specific class, attribute index and attribute value is incremented. During testing for a row, for
+each class label I look up the weight for each attribute and divide by the number of that class found in the
+training set I then multiply all of them together then I divide by the probability of that class.
+
+3. Outputs
+Breast Cancer Data Set
+30 26 19 105
+16 13 14 63
+
+Led Data Set
+324 314 65 1384
+162 189 27 756
+
+4. Personal Thoughts and Improvements
+I enjoyed this project and I'm very happy with my implementation. I think it's not super specific to this assignment and
+could be used for other data sets and problems.The only thing I am not too happy about is how many times the training
+and test files are read but I couldn't decide on a better solution. Currently the training file is read 3 times and test
+file 2 times. My other solution was reading them both into memory once and storing them in the object that's a lot of
+unnecessary data to store for the entire lifetime of the object. Also currently the classifier only handles categorical
+data so an improvement would be to allow it to handle continuous data.
